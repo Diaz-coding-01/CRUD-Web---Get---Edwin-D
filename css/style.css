@@ -1,0 +1,25 @@
+.add-button{
+    position: fixed;
+    bottom: 30px;
+    right: 40px;
+    background-color: #577ed9;
+    color: #fff;
+    border-radius: 50%;
+    border: none;
+    width: 70px;
+    height: 70px;
+    box-shadow: 2px 2px 8px 0px rgba(87, 132, 186, 0.35);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001; /*Para que el botón quede siempre "encima" del resto del contenido*/
+    transition: transform 0.4s;
+}
+
+.add-button:hover{
+    transform: scale(1.1);
+}
+
+.tabla-scroll{
+    overflow-x: auto;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!--Permite abrir un popup-->
+    <dialog id="mdAgregar" open>
+        <article>
+            <header>
+                <a href="#" class="close" id="btnCerrarModal"></a>
+                <h3>Agregar Integrante</h3>
+            </header>
+            <form id="frmAgregar">
+                <label for="txtNombre">Nombre</label>
+                <input type="text" id="txtNombre" required>
+                
+                <label for="txtApellido">Apellido</label>
+                <input type="text" id="txtApellido" required>
+
+                <label for="txtCorreo">Correo</label>
+                <input type="text" id="txtCorreo" required>
+
+                <button type="submit" class="contrast">Guardar</button>
+            </form>
+        </article>
+    </dialog>
+</body>
+</html>

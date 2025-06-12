@@ -6,7 +6,6 @@
     <title>Mega supersistema RISKOR</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="sweetalert2.min.css">
 </head>
 <body>
     <header class="container">
@@ -64,7 +63,31 @@
         </article>
     </dialog>
 
-    <button class="add-button" id="btnAgregar" title="Agregar Integrante">
+    <!--Popup para actualizar datos-->
+    <dialog id="mdModificar">
+        <article>
+            <header>
+                <a href="#" class="close" id="btnCerrarModalEditar"></a>
+                <h3>Modificar Integrante</h3>
+            </header>
+            <form id="frmModificar">
+                <input type="hidden" id="txtIDModificar"> <!--Guarda el id de manera oculta-->
+
+                <label for="txtNombre">Nombre</label>
+                <input type="text" id="txtNombreModificar" required>
+                
+                <label for="txtApellido">Apellido</label>
+                <input type="text" id="txtApellidoModificar" required>
+
+                <label for="txtCorreo">Correo</label>
+                <input type="text" id="txtCorreoModificar" required>
+
+                <button type="submit" class="contrast">Guardar</button>
+            </form>
+        </article>
+    </dialog>
+
+    <button class="add-button" id="btnAgregar" title="Editar Integrante">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
     </button>
 

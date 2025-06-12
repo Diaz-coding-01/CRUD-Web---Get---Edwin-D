@@ -29,7 +29,7 @@ function MostrarRegistros(datos){
                 <td>${persona.apellido}</td>
                 <td>${persona.correo}</td>
                 <td>
-                    <button>Editar</button>
+                    <button onclick = "abrirModificar('${persona.id}', '${persona.nombre}', '${persona.apellido}', '${persona.correo}')">Editar</button>
                     <button onclick = "EliminarPersona(${persona.id})">Eliminar</button>
                 </td>
             </tr>
@@ -39,8 +39,6 @@ function MostrarRegistros(datos){
 
 ObtenerRegistros();
 
-
-
 //Proceso para agregar registros
 
 const btnAgregar = document.getElementById("btnAgregar");
@@ -48,15 +46,15 @@ const modal = document.getElementById("mdAgregar");
 const btnCerrar = document.getElementById("btnCerrarModal");
 
 btnAgregar.addEventListener("click", () => {
-    modal.show();
+    modal.showModal();
 });
 
 btnCerrar.addEventListener("click", () => {
     modal.close();
 });
 
-btnAgregar.addEventListener("click", openModal());
-btnCerrar.addEventListener("click", closeModal());
+btnAgregar.addEventListener("click", modal.showModal());
+btnCerrar.addEventListener("click", modal.close());
 
 document.getElementById("frmAgregar").addEventListener("submit", async e => {
     e.preventDefault(); //Evita que los datos se envien por defecto
@@ -111,3 +109,47 @@ async function EliminarPersona(id){
         ObtenerRegistros();
     }
 }
+
+//Modificar
+const editar = document.getElementById("mdModificar");
+const btnCerrarEditar = document.getElementById("btnCerrarModalEditar");
+
+btnCerrarEditar.addEventListener('click', () => {
+    editar.close();
+});
+
+function abrirModificar(id, nombre, apellido, correo) {
+    //Agregamos los valores a los inputs
+    document.getElementById("txtIDModificar").value = id;
+    document.getElementById("txtNombreModificar").value = nombre;
+    document.getElementById("txtApellidoModificar").value = apellido;
+    document.getElementById("txtCorreoModificar").value = correo;
+    
+    editar.showModal();
+}
+
+document.getElementById("mdModificar").addEventListener("submit", async e => {
+    e.preventDefault(); //Evita que el formulario se envie de golpe
+
+    const id = document.getElementById("txtIDModificar").value.trim();
+    const nombre = document.getElementById("txtNombreModificar").value.trim();
+    const apellido = document.getElementById("txtApellidoModificar").value.trim();
+    const correo = document.getElementById("txtCorreoModificar").value.trim();
+
+    if(!id || !nombre || !apellido || !correo){
+        alert("No soca, complete todos los campos");
+        return;
+    }
+
+    const res = await fetch(`${API_URL}/${id}`, {
+        method: "PUT",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({nombre: nombre, apellido: apellido, correo: correo})
+    });
+
+    //Cerrar el modal
+    editar.close();
+
+    //Recargar la tabla
+    ObtenerRegistros();
+});
